@@ -16,7 +16,7 @@
         <h2>Dopa Box</h2>
         <ul>
             <li><a href="/dashboard"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="/notes"><i class="fas fa-sticky-note"></i>Notes</a></li>
+            <li><a href="#"><i class="fas fa-sticky-note"></i>Notes</a></li>
             <li><a href="#"><i class="fas fa-key"></i>Accounts</a></li>
             <li><a href="#"><i class="fas fa-link"></i>Links</a></li>
             <li><a href="#"><i class="fas fa-images"></i>Image/Video</a></li>
@@ -32,44 +32,44 @@
         <div class="header">Welcome!! Have a nice day.
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
-        <div class="posts">
-          <div class="post">
-            <h2><i class="fas fa-search"></i> 
-        Find</h2>
-        <form class="example" action="/">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        </div>
-        <div class="post">
-
-        <h2><i class="far fa-plus-square"></i> Create</h2>
-        <form action="/create">
-
-          <input type="submit"  class="btn btn-secondary" name="" value="Notes">
-          <input type="submit"  class="btn btn-secondary" name="" value="Accounts">
-          <input type="submit"  class="btn btn-secondary" name="" value="Links">
-          <input type="submit"  class="btn btn-secondary" name="" value="Image">
-          <input type="submit"  class="btn btn-secondary" name="" value="Video">
-          <input type="submit"  class="btn btn-secondary" name="" value="Files">
-
-
-        </form>
-        </div>
-        <div class="post">
-
-            <h2><i class="fas fa-folder"></i> 
-        Recent</h2>
+        <div class="note">
+          
+       
+          <div class="paper">
+            <form action="/notes/create" method="post">
+            <div class="paper-content">
+              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="name" name="" id=""></br>
+                <textarea autofocus name="note">123</textarea>
+              
+            </div>
+            
+            <input class='note-submit-button'type="submit" name="" id="" value="Create">
+          </form>
 
         </div>
-        <div class="post">
+    
+        <div style="margin-left: 5%;">
+          <h2 style="align-items: center;">Recent Notes</h2>
+          <table class="table table-striped">
+            <tr>
+              <th>Name</th>
+              <th>Action</th>
+              <th>Created</th>
+              <th>Updated</th>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><a href="/">Update </a><a href="">Delete </a><a href="">Share </a></td>
+              <td>5 days ago</td>
+              <td>2 days ago</td>
+            </tr>
+            <tr>
 
-            <h2><i class="fas fa-user-friends"></i> 
-        Friends</h2>
+            </tr>
+          </table>
+        </div>
+        </div>
 
-        </div>
-        </div>
-        </div>
     </div>
 </div>
 
