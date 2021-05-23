@@ -29,21 +29,21 @@
 
     </div>
     <div class="main_content">
-        <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new note</a>
+        <div class="header">Welcome! <a href="/notes">Click here to create a new note</a>
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
         <div class="note">
           
        
           <div class="paper">
-            <form action="/notes/create" method="post">
+            <form action="/notes/{{update[0]['id']}}/update" method="post">
             <div class="paper-content">
-              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="Note {{all|length+1}}"></br>
-                <textarea autofocus name="note"></textarea>
+              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="{{update[0]['name']}}"></br>
+                <textarea autofocus name="note">{{update[0]['note']}}</textarea>
               
             </div>
             
-            <input class='note-submit-button'type="submit" name="" id="" value="Create">
+            <input class='note-submit-button'type="submit" name="" id="" value="Update">
           </form>
 
         </div>
@@ -60,10 +60,10 @@
             {% for i in all %}
             
             <tr>
-              <td>{{i.name}}</td>
-              <td><a href="/notes/{{i.id}}">Update </a><a href="/notes/{{i.id}}/delete">Delete </a><a href="">Share </a></td>
-              <td>{{ i.created_at}}</td>
-              <td>{{ i.updated_at }}</td>
+              <td>{{i['name']}}</td>
+              <td><a href="/notes/{{i['id']}}">Update </a><a href="/notes/{{i['id']}}/delete">Delete </a><a href="">Share </a></td>
+              <td>{{ i['created_at'] }}</td>
+              <td>{{ i['updated_at'] }}</td>
             </tr>
             {% endfor %}
 

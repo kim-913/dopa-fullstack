@@ -47,28 +47,49 @@ class Notes:
     def __init__(self,data):
         self.id = data['id']
         self.name = data['name']
-        self.note=data['email']
+        self.note=data['note']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.type=data['type']
         self.userinfo=Users.get_one(data['user_id'])
 
     @classmethod
     def get_one(cls,name):
         mysql = connectToMySQL("dopa")
-        notes = mysql.query_db("SELECT * FROM notebox where name = %(name)s and user_id= %(id)s;")
-        print(notes)
-        return notes
+        query = "SELECT * FROM notebox where id =  %(id)s;"
+        one_note = mysql.query_db(query,name)
+
+        print(one_note)
+        return one_note
 
     @classmethod
     def get_all(cls,id):
         mysql = connectToMySQL("dopa")
-        all_notes = mysql.query_db("SELECT * FROM notebox where user_id = %(id)s;")
-        print(all_notes)
-        return all_notes
+        query = "SELECT * FROM notebox where user_id = %(id)s;"
+        all_notes = mysql.query_db(query,id)
+        all = []
+        for b in all_notes:
+            all.append(cls(b))
+        return all
+
 
     @classmethod
     def add(cls,data):
         mysql = connectToMySQL("dopa")
-        query="INSERT INTO notebox(name,note) VALUES(%(name)s,%(note)s);"
+        query="INSERT INTO notebox(name,note,type,user_id) VALUES(%(name)s,%(note)s,'note',%(user_id)s);"
         new_note = mysql.query_db(query,data)
         return new_note
+
+    @classmethod
+    def update(cls,data):
+        mysql = connectToMySQL("dopa")
+        query="UPDATE notebox SET name = %(name)s, note=%(note)s WHERE id = %(id)s;"
+        update_note =mysql.query_db(query,data)
+        return update_note
+
+    @classmethod
+    def delete(cls,id):
+        mysql = connectToMySQL("dopa")
+        query="DELETE FROM notebox WHERE id = %(id)s;"
+        remove = mysql.query_db(query,id)
+        return remove
