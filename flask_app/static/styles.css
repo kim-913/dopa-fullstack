@@ -104,3 +104,10 @@ body{
   display: flex;
   justify-content: space-between;
 }
+
+.info{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

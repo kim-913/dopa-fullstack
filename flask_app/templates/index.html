@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    
   </head>
   <body>
   <div class='intro'>
@@ -29,13 +30,13 @@
 
     <div class="login-box">
       <div class="hide-login-btn"><i class="fas fa-times"></i></div>
-      <h2>Demo Email:</h2>
-      <h2>Demo Password:</h2>
+      <h2>Demo Email:ldkxnb@gmail.com</h2>
+      <h2>Demo Password:123</h2>
 
-    <form class="login-form" action="index.html" method="post">
+    <form class="login-form" action="/login" method="post">
       <h1>Welcome Back</h1>
-      <input class="txtb" type="text" name="" placeholder="Email">
-      <input class="txtb" type="password" name="" placeholder="Password">
+      <input class="txtb" type="text" name="email" placeholder="Email">
+      <input class="txtb" type="password" name="pw" placeholder="Password">
       <input class="login-btn" type="submit" name="" value="Login">
 
     </form>
@@ -45,14 +46,13 @@
 
     <div class="reg-box">
       <div class="hide-reg-btn"><i class="fas fa-times"></i></div>
-    <form class="login-form" action="index.html" method="post">
+    <form class="login-form" action="/create" method="post">
       <h1>Register</h1>
-      <input class="txtb" type="text" name="" placeholder="Name">
+      <input class="txtb" type="text" name="name" placeholder="Name">
 
-      <input class="txtb" type="text" name="" placeholder="Email">
-      <input class="txtb" type="password" name="" placeholder="Password">
-      <input class="txtb" type="password" name="" placeholder="Confirm Password">
-      <input class="login-btn" type="submit" name="" value="Login">
+      <input class="txtb" type="text" name="email" placeholder="Email">
+      <input class="txtb" type="password" name="pw" placeholder="Password">
+      <input class="login-btn" type="submit" name="" value="Register">
     </form>
     </div>
     </div>
