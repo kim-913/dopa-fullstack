@@ -2,13 +2,15 @@ import re
 from types import MethodDescriptorType
 from flask.globals import current_app
 from flask.wrappers import Request
-from flask_app.models.model import Users
+from werkzeug import datastructures
+from flask_app.models.model import Users,Notes
 from flask_app.config.mysqlconnection import connectToMySQL
     # import the function that will return an instance of a connection
 from flask import Flask,render_template,request, redirect,session
 from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask import flash
+import operator
 bcrypt = Bcrypt(app)     
 
 @app.route('/')
@@ -21,8 +23,17 @@ def index():
 def success():
     if 'user_id' not in session:
         return redirect('/')
-
-    return render_template('dashboard.html')
+    data={
+        'id':session["user_id"]
+    }
+    User_info=Users.get_one(data)
+    user_id_data={
+        'id':User_info[0]['id']
+    }
+    All_note=Notes.get_all(user_id_data)
+    sorted_all_notes = sorted(All_note, key=operator.attrgetter('updated_at'),reverse=True)
+    print(All_note)
+    return render_template('dashboard.html',all_note=sorted_all_notes)
 
 @app.route('/create',methods=['post'])
 def create():
@@ -33,7 +44,6 @@ def create():
         'pw':pw_hash
     }
     new= Users.add(data)
-    print(new)
     session['user_id'] = new
     return redirect('/dashboard')
     
