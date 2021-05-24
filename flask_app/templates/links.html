@@ -18,7 +18,7 @@
             <li><a href="/dashboard"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="/notes"><i class="fas fa-sticky-note"></i>Notes</a></li>
             <li><a href="/accounts"><i class="fas fa-key"></i>Accounts</a></li>
-            <li><a href="/links"><i class="fas fa-link"></i>Links</a></li>
+            <li><a href="#"><i class="fas fa-link"></i>Links</a></li>
             <li><a href="#"><i class="fas fa-images"></i>Image/Video</a></li>
             <li><a href="#"><i class="fas fa-file"></i>Files</a></li>
 
@@ -28,42 +28,37 @@
         </ul> 
 
     </div>
-    <div class="main_content">
-        <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new note</a>
+    <div class="main_content" >
+        <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new link</a>
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
-        <div class="note">
-          
-       
-          <div class="paper">
-            <form action="/notes/create" method="post">
-            <div class="paper-content">
-              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="Note {{all|length+1}}"></br>
-                <textarea autofocus name="note"></textarea>
-              
-            </div>
-            
-            <input class='note-submit-button'type="submit" name="" id="" value="Create">
-          </form>
+        <div class="note" style="display: flex;justify-content: space-evenly;">
 
-        </div>
-    
+          <div class="form-outline">
+            <form action="/links/create" method="post">
+            <label class="form-label" for="form1">Name</label>
+            <input type="text" name='name' id="form1" class="form-control" style="width: 300px;"/>
+            <label class="form-label" for="form1">Link</label>
+            <input type="text" name='note' id="form1" class="form-control" />
+            <button type="submit" class="btn btn-dark">Create</button>
+          </form>
+          </div>
+            
+
         <div style="margin-left: 5%;">
-          <h2 style="align-items: center;">Recent Notes </h2>
+          <h2 style="align-items: center;">Recent Links </h2>
           <table class="table table-striped">
             <tr>
               <th>Name</th>
               <th>Action</th>
-              <th>Created</th>
-              <th>Updated</th>
+
             </tr>
             {% for i in all[0:16] %}
             
             <tr>
-              <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
-              <td><a href="/notes/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
-              <td>{{ i.created_at}}</td>
-              <td>{{ i.updated_at }}</td>
+              <td><a href="https://{{i.note}}/" target="_blank">{{i.name}}</a></td>
+              <td><a href="/links/{{i.id}}">Update </a>or <a href="/links/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
+
             </tr>
             {% endfor %}
 

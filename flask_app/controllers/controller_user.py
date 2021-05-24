@@ -3,7 +3,7 @@ from types import MethodDescriptorType
 from flask.globals import current_app
 from flask.wrappers import Request
 from werkzeug import datastructures
-from flask_app.models.model import Users,Notes
+from flask_app.models.model import Users,Notes,Links
 from flask_app.config.mysqlconnection import connectToMySQL
     # import the function that will return an instance of a connection
 from flask import Flask,render_template,request, redirect,session
@@ -16,7 +16,7 @@ bcrypt = Bcrypt(app)
 @app.route('/')
 def index():
     if 'user_id' in session:
-        return render_template("dashboard.html")
+        return redirect('/dashboard')
     return render_template("index.html")
 
 @app.route('/dashboard')
@@ -31,9 +31,11 @@ def success():
         'id':User_info[0]['id']
     }
     All_note=Notes.get_all(user_id_data)
+    All_link=Links.get_all(user_id_data)
     sorted_all_notes = sorted(All_note, key=operator.attrgetter('updated_at'),reverse=True)
+    sorted_all_links = sorted(All_link, key=operator.attrgetter('updated_at'),reverse=True)
     print(All_note)
-    return render_template('dashboard.html',all_note=sorted_all_notes)
+    return render_template('dashboard.html',all_note=sorted_all_notes,all_link=sorted_all_links)
 
 @app.route('/create',methods=['post'])
 def create():

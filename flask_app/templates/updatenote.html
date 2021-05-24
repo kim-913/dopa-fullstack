@@ -57,7 +57,7 @@
               <th>Created</th>
               <th>Updated</th>
             </tr>
-            {% for i in all %}
+            {% for i in all[0:16] %}
             
             <tr>
               <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
