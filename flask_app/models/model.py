@@ -17,14 +17,16 @@ class Users:
         self.pw=data['pw']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.all_notes = Notes.get_all(data['id'])
+        self.all_accs = Accounts.get_all(data['id'])
 
     @classmethod
     def get_one(cls,id):
         mysql = connectToMySQL("dopa")
-        users = mysql.query_db("SELECT * FROM users where id = %(id)s;")
-        print(users)
-        return users
-    
+        query = "SELECT * FROM users where id = %(id)s;"
+        user_info = mysql.query_db(query,id)
+        return user_info
+
     @classmethod
     def add(cls,data):
         mysql = connectToMySQL("dopa")
@@ -58,7 +60,6 @@ class Notes:
         mysql = connectToMySQL("dopa")
         query = "SELECT * FROM notebox where id =  %(id)s;"
         one_note = mysql.query_db(query,name)
-
         print(one_note)
         return one_note
 

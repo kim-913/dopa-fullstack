@@ -36,10 +36,10 @@
           <div class="post">
             <h2><i class="fas fa-search"></i> 
         Find</h2>
-        <form class="example" action="/">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+              <form action="">
+                <h2><input type="text" name="" id=""></h2>
+                <h2><input type="submit" name="" id="" value="Search"></h2>
+              </form>
         </div>
         <div class="post">
 
@@ -54,10 +54,26 @@
 
         </div>
         <div class="post">
-
+          
             <h2><i class="fas fa-folder"></i> 
         Recent</h2>
-
+        <div class="recent_all">
+              <div class='recent'>
+                <p>Notes</p>
+                {% for i in all_note[0:5] %}
+                <p><a href="/notes/{{i.id}}">{{ i.name }}</a></p>
+                {% endfor %}
+              </div>
+              <div class='recent'>
+                <p>Links</p>
+              </div>
+              <div class="recent">
+                <p>Images/Videos</p>
+              </div>
+              <div clas='recent'>
+                <p>Files</p>
+              </div>
+          </div>
         </div>
         <div class="post">
 

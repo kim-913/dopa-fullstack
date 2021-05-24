@@ -116,7 +116,7 @@ body{
 
   width: 100%;
   margin-top: 5%;
-  height: 200%;
+  height: 100%;
   overflow: hidden;
 }
 .post{
@@ -210,3 +210,10 @@ h2{
   background-color: white;
   
 }
+
+.recent_all{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
