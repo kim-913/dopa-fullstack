@@ -29,7 +29,7 @@
 
     </div>
     <div class="main_content">
-        <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new note</a>
+        <div class="header">Welcome!
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
         <h2>Search <input type="text" name="" id="">By <select name="cars" id="cars">
@@ -37,6 +37,8 @@
           <option value="Link">Link</option>
           <option value="user_name">User_name</option>
           <option value="email">Email</option>
+          <option value="comment">Comment</option>
+
         </select><input type="submit" name="" id="" value="Search"></h2>
 
         <table id='accounts_table' class="table table-hover">
@@ -49,15 +51,30 @@
             <th>comment</th>
             <th>Action</th>
           </tr>
+          {% for i in all %}
           <tr>
-            <form action="/create"></form>
-            <td><input class='inputbox'type="text" name="" id=""></td>
-            <th><input class='inputbox'type="text" name="" id=""></th>
-            <th><input class='inputbox'type="text" name="" id=""></th>
-            <th><input class='inputbox'type="text" name="" id=""></th>
-            <th><input class='inputbox'type="text" name="" id=""></th>
-            <th><input class='inputbox'type="text" name="" id=""></th>
+            <form action="/accounts/update" method="post">
+              <td><input class='inputbox'type="text" name="name" id="" value="{{i.name}}"></td>
+              <th><input class='inputbox'type="text" name="link" id="" value="{{i.link}}"></th>
+              <th><input class='inputbox'type="text" name="user_name" id="" value="{{i.user_name}}"></th>
+              <th><input class='inputbox'type="text" name="email" id="" value="{{i.email}}"></th>
+              <th><input class='inputbox' type="text" name="password" id="" value="{{i.password}}"></th>
+              <th><input class='inputbox'type="text" name="comment" id="" value="{{i.comment}}"></th>
+              <input type="hidden" name="id" id="" value="{{i.id}}">
+              <th><input class='inputbox'type="submit" name="submit" id=""value="Update"> or <input class='inputbox'type="submit" name="submit" id=""value="Delete"></th>
+            </form>
+          </tr>
+          {% endfor %}
+          <tr>
+            <form action="/accounts/create" method="post">
+            <td><input class='inputbox'type="text" name="name" id=""></td>
+            <th><input class='inputbox'type="text" name="link" id=""></th>
+            <th><input class='inputbox'type="text" name="user_name" id=""></th>
+            <th><input class='inputbox'type="text" name="email" id=""></th>
+            <th><input class='inputbox'type="text" name="password" id=""></th>
+            <th><input class='inputbox'type="text" name="comment" id=""></th>
             <th><input class='inputbox'type="submit" name="" id=""value="Create"></th>
+          </form>
           </tr>
         </table>
         </div>

@@ -93,3 +93,59 @@ class Notes:
         query="DELETE FROM notebox WHERE id = %(id)s;"
         remove = mysql.query_db(query,id)
         return remove
+
+
+class Accounts:
+    def __init__(self,data):
+        self.id = data['id']
+        self.name = data['name']
+        self.link = data['link']
+        self.user_name=data['user_name']
+        self.email=data['email']
+        self.password=data['pw']
+        self.comment=data['comment']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
+        self.userinfo=Users.get_one(data['user_id'])
+
+    @classmethod
+    def get_one(cls,name):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM accountbox where id =  %(id)s;"
+        one_acc = mysql.query_db(query,name)
+
+        return one_acc
+
+    @classmethod
+    def get_all(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM accountbox where user_id = %(id)s ;"
+        all_acc = mysql.query_db(query,id)
+        all = []
+        for b in all_acc:
+            all.append(cls(b))
+        return all
+
+
+    @classmethod
+    def add(cls,data):
+        mysql = connectToMySQL("dopa")
+        query="INSERT INTO accountbox(name,link,user_name,email,pw,comment,user_id) VALUES(%(name)s,%(link)s,%(user_name)s,%(email)s,%(password)s,%(comment)s,%(user_id)s);"
+        new_acc = mysql.query_db(query,data)
+        return new_acc
+
+    @classmethod
+    def update(cls,data):
+        mysql = connectToMySQL("dopa")
+        query="UPDATE accountbox SET name = %(name)s, link=%(link)s,user_name=%(user_name)s,email=%(email)s,comment=%(comment)s, pw=%(password)s WHERE id = %(id)s;"
+        update_acc =mysql.query_db(query,data)
+        print(update_acc)
+        return update_acc
+
+    @classmethod
+    def delete(cls,id):
+        mysql = connectToMySQL("dopa")
+        query="DELETE FROM accountbox WHERE id = %(id)s;"
+        remove = mysql.query_db(query,id)
+        print(remove)
+        return remove
