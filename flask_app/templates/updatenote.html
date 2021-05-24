@@ -60,8 +60,8 @@
             {% for i in all %}
             
             <tr>
-              <td>{{i['name']}}</td>
-              <td><a href="/notes/{{i['id']}}">Update </a><a href="/notes/{{i['id']}}/delete">Delete </a><a href="">Share </a></td>
+              <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
+              <td><a href="/notes/{{i.id}}/delete">Delete </a> or <a href="">Share </a></td>
               <td>{{ i['created_at'] }}</td>
               <td>{{ i['updated_at'] }}</td>
             </tr>

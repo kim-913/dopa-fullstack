@@ -32,43 +32,34 @@
         <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new note</a>
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
-        <div class="note">
-          
-       
-          <div class="paper">
-            <form action="/notes/create" method="post">
-            <div class="paper-content">
-              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="Note {{all|length+1}}"></br>
-                <textarea autofocus name="note"></textarea>
-              
-            </div>
-            
-            <input class='note-submit-button'type="submit" name="" id="" value="Create">
-          </form>
+        <h2>Search <input type="text" name="" id="">By <select name="cars" id="cars">
+          <option value="Name">Name</option>
+          <option value="Link">Link</option>
+          <option value="user_name">User_name</option>
+          <option value="email">Email</option>
+        </select><input type="submit" name="" id="" value="Search"></h2>
 
-        </div>
-    
-        <div style="margin-left: 5%;">
-          <h2 style="align-items: center;">Recent Notes </h2>
-          <table class="table table-striped">
-            <tr>
-              <th>Name</th>
-              <th>Action</th>
-              <th>Created</th>
-              <th>Updated</th>
-            </tr>
-            {% for i in all %}
-            
-            <tr>
-              <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
-              <td><a href="/notes/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
-              <td>{{ i.created_at}}</td>
-              <td>{{ i.updated_at }}</td>
-            </tr>
-            {% endfor %}
-
-          </table>
-        </div>
+        <table id='accounts_table' class="table table-hover">
+          <tr>
+            <th>Name</th>
+            <th>Link</th>
+            <th>User_name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>comment</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <form action="/create"></form>
+            <td><input class='inputbox'type="text" name="" id=""></td>
+            <th><input class='inputbox'type="text" name="" id=""></th>
+            <th><input class='inputbox'type="text" name="" id=""></th>
+            <th><input class='inputbox'type="text" name="" id=""></th>
+            <th><input class='inputbox'type="text" name="" id=""></th>
+            <th><input class='inputbox'type="text" name="" id=""></th>
+            <th><input class='inputbox'type="submit" name="" id=""value="Create"></th>
+          </tr>
+        </table>
         </div>
 
     </div>

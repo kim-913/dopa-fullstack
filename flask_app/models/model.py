@@ -65,7 +65,7 @@ class Notes:
     @classmethod
     def get_all(cls,id):
         mysql = connectToMySQL("dopa")
-        query = "SELECT * FROM notebox where user_id = %(id)s;"
+        query = "SELECT * FROM notebox where user_id = %(id)s and type= 'note';"
         all_notes = mysql.query_db(query,id)
         all = []
         for b in all_notes:
