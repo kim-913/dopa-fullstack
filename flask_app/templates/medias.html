@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Notes</title>
+	<title>Side Navigation Bar</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -24,55 +25,19 @@
 
           <li><a href="/friends"><i class="fas fa-user-friends"></i>Friends</a></li>
           <li><a href="/contactinfo"><i class="fas fa-info-circle"></i>About</a></li>
-
             <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
 
         </ul> 
 
     </div>
     <div class="main_content">
-        <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new note</a>
+                  
+      
+        <div class="header">Welcome!! Have a nice day.
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
-        <div class="note">
-          
-       
-          <div class="paper">
-            <form action="/notes/create" method="post">
-            <div class="paper-content">
-              Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="Note {{all|length+1}}"></br>
-                <textarea autofocus name="note"></textarea>
-              
-            </div>
-            
-            <input class='note-submit-button'type="submit" name="" id="" value="Create">
-          </form>
 
-        </div>
-    
-        <div style="margin-left: 5%;">
-          <h2 style="align-items: center;">Recent Notes </h2>
-          <table class="table table-striped">
-            <tr>
-              <th>Name</th>
-              <th>Action</th>
-              <th>Created</th>
-              <th>Updated</th>
-            </tr>
-            {% for i in all[0:16] %}
-            
-            <tr>
-              <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
-              <td><a href="/notes/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
-              <td>{{ i.created_at}}</td>
-              <td>{{ i.updated_at }}</td>
-            </tr>
-            {% endfor %}
-
-          </table>
-        </div>
-        </div>
-
+        
     </div>
 </div>
 

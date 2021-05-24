@@ -54,6 +54,11 @@ def logout():
     session.clear()
     return redirect('/')
 
+@app.route('/contactinfo')
+def about():
+
+    return render_template('about.html')
+
 @app.route('/login',methods=['post'])
 def login():
     data = { 
