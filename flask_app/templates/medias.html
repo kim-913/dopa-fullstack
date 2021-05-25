@@ -42,14 +42,14 @@
           <form action="/search" method="get">
             <h2 >Search</h2> <h2>
               <input type="hidden" name="search_type" id="" value="Images">
-              <input class="form-control" style="width: 70%;display: inline;" type="text" name="search_content" id=""><button type="submit" style="display: inline;" class="btn btn-dark">Search</button></h2>
+              <input class="form-control" style="width: 70%;display: inline;" type="text" name="search_content" id=""><button type="submit" style="display: inline;" class="btn btn-outline-dark">Search</button></h2>
           </form>
         </div>
           <div>
           <form action="/search" method="get">
             <h2 >Search</h2> <h2>
               <input type="hidden" name="search_type" id="" value="Videos">
-              <input class="form-control" style="width: 70%;display: inline;" type="text" name="search_content" id=""><button type="submit" style="display: inline;" class="btn btn-dark">Search</button></h2>
+              <input class="form-control" style="width: 70%;display: inline;" type="text" name="search_content" id=""><button type="submit" style="display: inline;" class="btn btn-outline-dark">Search</button></h2>
           </form>
         </div>
         
@@ -70,12 +70,12 @@
         <div style="padding:10px;border-style: solid;">
           <h1><form action="/medias/image" method="post" enctype="multipart/form-data">
             New image(JPG,PNG,GIF)</h1></br><h3>Name：<input type="text" name="name" id="" value="Image {{all|length+1}}"">
-  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-dark">Upload</button>
+  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-outline-dark btn-lg">Upload</button>
           </form>
         </div>
         <div style="padding:10px;border-style: solid;">
           <h1><form action="/medias/video" method="post">
-            New Video(Youtube Only)</h1></br><h3>Name：<input  style="width: 50%;" type="text" name="name" id="" value="Video {{allv|length+1}}"></br>Link：<span>  </span>    <input  type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
+            New Video(Youtube Only)</h1></br><h3>Name：<input  style="width: 50%;" type="text" name="name" id="" value="Video {{allv|length+1}}"></br>Link：<span>  </span>    <input  type="text" name="note" id=""></h3><button type="submit" class="btn btn-outline-dark btn-lg">Post</button>
           </form>
         </div>
       </div>

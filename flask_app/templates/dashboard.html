@@ -38,7 +38,7 @@
             <label class="form-label" for="form1">Password: <input class="form-control"type="text" name="password" id=""></label></br>
             <label class="form-label" for="form1">Comment:</label><input class="form-control"type="text" name="comment" id=""></br>
 
-            <button type="submit" class="btn btn-dark">Create</button>
+            <button type="submit" class="btn btn-outline-dark btn-lg">Create</button>
           </form>
       </div>
       </div>
@@ -52,7 +52,7 @@
           <input type="text" name='name' id="form1" class="form-control" style="width: 300px;"/>
           <label class="form-label" for="form1">Link</label>
           <input type="text" name='note' id="form1" class="form-control" />
-          <button type="submit" class="btn btn-dark">Create</button>
+          <button type="submit" class="btn btn-outline-dark btn-lg">Create</button>
 
         </form>
 
@@ -69,7 +69,7 @@
         <div style="padding:10px">
           <h1><form action="/medias/image" method="post" enctype="multipart/form-data">
             New image(JPG,PNG,GIF)</h1></br><h3>Name：<input type="text" name="name" id="" value="New Image"">
-  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-dark">Upload</button>
+  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-outline-dark btn-lg">Upload</button>
           </form>
         </div>
         
@@ -81,7 +81,7 @@
           <span class="close">&times;</span>
           <div style="padding:10px;">
             <h1><form action="/medias/video" method="post">
-              New Video(Youtube Only)</h1></br><h3>Name：<input class="form-control" style="width: 50%;" type="text" name="name" id="" value="New video"></br>Link：<span>  </span>    <input class="form-control "type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
+              New Video(Youtube Only)</h1></br><h3>Name：<input class="form-control" style="width: 50%;" type="text" name="name" id="" value="New video"></br>Link：<span>  </span>    <input class="form-control "type="text" name="note" id=""></h3><button type="submit" class="btn btn-outline-dark btn-lg">Post</button>
             </form>
           </div>
       </div>
@@ -126,7 +126,7 @@
                   <option value="Videos">Videos</option>
 
                 </select></h2>
-                <h2>  <button type="submit" class="btn btn-dark">Search</button>
+                <h2>  <button type="submit" class="btn btn-outline-dark btn-lg">Search</button>
                 </h2>
               </form>
 
@@ -135,11 +135,12 @@
 
         <h2 style="padding: 10px;"><i class="far fa-plus-square"></i> Quick </h2>
           <div class='quick' style="display: flex; justify-content: space-between; margin-top:30px;">
-            <h2><a id="myBtn1" style="color: black;" ><i class="fas fa-sticky-note"></i></br>Note</a></h2>
-            <h2><a id="myBtn2" style="color: black;"><i class="fas fa-key" ></i></br>Accounts</a></h2>
-            <h2><a style="color: black;" id="myBtn3"><i class="fas fa-link" ></i></br>Links</a></h2>
-            <h2><a style="color: black;" id="myBtn4"><i class="fas fa-images" ></i></br>images</a></h2>
-            <h2><a style="color: black;" id="myBtn5"><i class="fas fa-video" ></i></br>Videos</a></h2>
+            
+            <h2><a id="myBtn1" style="color: black;" ><i class="fas fa-sticky-note "></i></br><button class="btn btn-outline-dark btn-lg">Note</BUTton></a></h2>
+            <h2><a id="myBtn2" style="color: black;"><i class="fas fa-key" ></i></br><button class="btn btn-outline-dark btn-lg">Account</BUTton></a></h2>
+            <h2><a style="color: black;" id="myBtn3"><i class="fas fa-link" ></i></br><button class="btn btn-outline-dark btn-lg">Link</BUTton></a></h2>
+            <h2><a style="color: black;" id="myBtn4"><i class="fas fa-images" ></i></br><button class="btn btn-outline-dark btn-lg">Image</BUTton></a></h2>
+            <h2><a style="color: black;" id="myBtn5"><i class="fas fa-video" ></i></br><button class="btn btn-outline-dark btn-lg">Video</BUTton></a></h2>
 
           </div>
         </div>
