@@ -69,7 +69,7 @@ body{
 .wrapper .sidebar .social_media a{
   display: block;
   width: 40px;
-  background: #white;
+  background: white;
   height: 40px;
   line-height: 45px;
   text-align: center;
@@ -213,7 +213,11 @@ h2{
 
 .recent_all{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   
+}
+
+.recent{
+  flex:1;
 }
 

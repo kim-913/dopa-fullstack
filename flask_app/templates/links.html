@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Notes</title>
+	<title>Links</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
@@ -34,6 +34,8 @@
         <div class="header">Welcome! <a href="/notes"style="color: black;">Click here to create a new link</a>
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
+        <h2>Search <input type="text" name="" id=""><button type="submit" class="btn btn-dark">Search</button></h2>
+        <h1>
         <div class="note" style="display: flex;justify-content: space-evenly;">
 
           <div class="form-outline">
@@ -55,7 +57,7 @@
               <th>Action</th>
 
             </tr>
-            {% for i in all[0:16] %}
+            {% for i in all[0:10] %}
             
             <tr>
               <td><a href="https://{{i.note}}/" target="_blank">{{i.name}}</a></td>
@@ -67,7 +69,7 @@
           </table>
         </div>
         </div>
-
+      </h1>
     </div>
 </div>
 

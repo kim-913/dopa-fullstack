@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Side Navigation Bar</title>
+	<title>Dashboard</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
@@ -73,18 +73,27 @@
         <div class="recent_all">
               <div class='recent'>
                 <p>Notes</p>
-                {% for i in all_note[0:5] %}
+                {% for i in all_note[0:4] %}
                 <p><a style="color: black;" href="/notes/{{i.id}}">{{ i.name }}</a></p>
                 {% endfor %}
               </div>
               <div class='recent'>
                 <p>Links</p>
-                {% for i in all_link[0:5] %}
+                {% for i in all_link[0:4] %}
                 <p><a style="color: black;" href="https://{{i.note}}/" target="_blank">{{ i.name }}</a></p>
                 {% endfor %}
               </div>
               <div class="recent">
-                <p>Images/Videos</p>
+                <p>Images</p>
+                {% for i in all_image[0:4] %}
+                <p><a style="color: black;" href="/medias" >{{i.name}}</a></p>
+                 {% endfor %}
+              </div>
+              <div class="recent">
+                <p>Videos</p>
+                {% for i in all_video[0:4] %}
+                <p><a style="color: black;" href="https://www.youtube.com/watch?v={{i.note}}" target="_blank">{{i.name}}</a></p>
+                 {% endfor %}
               </div>
               <div clas='recent'>
                 <p>Files</p>

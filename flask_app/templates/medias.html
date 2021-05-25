@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Side Navigation Bar</title>
+	<title>Medias</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
@@ -33,11 +33,68 @@
     <div class="main_content">
                   
       
-        <div class="header">Welcome!! Have a nice day.
+        <div class="header">Welcome!! Since we don't have a "cloud" storage, we are only supporting upload for images that are less than 40kb, for videos, you can put youtube links in and it would have a embeded video
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
+        <h2>Search <input type="text" name="" id=""><button type="submit" class="btn btn-dark">Search</button></h2>
+        <div style="display: flex;justify-content: space-evenly;">
+        <div style="padding:10px;border-style: solid;">
+          <h1><form action="/medias/image" method="post" enctype="multipart/form-data">
+            New image(JPG,PNG,GIF)</h1></br><h3>Name：<input type="text" name="name" id="" value="Image {{all|length+1}}"">
+  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-dark">Upload</button>
+          </form>
+        </div>
+        <div style="padding:10px;border-style: solid;">
+          <h1><form action="/medias/video" method="post">
+            New Video(Youtube Only)</h1></br><h3>Name：<input style="width: 50%;" type="text" name="name" id="" value="Video {{allv|length+1}}"></br>Link：<span>  </span>    <input type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
+          </form>
+        </div>
+      </div>
 
-        
+        <div style="display: flex;justify-content: space-evenly;">
+          <div style="flex:1">
+            <h2>Recent Image</h2>
+            {% for i in all[0:6]%}
+            <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
+            <p>{{i.name}}</p>
+            <img style="max-height: 300px;max-width:240px ;" src="data:image/png;base64,{{i.file}}" alt='img'></br>
+            <form style="display: inline-block;" action="/image/delete" method='post'>
+              <input type="hidden" name='id' value="{{i.id}}">
+              <button type="submit" class="btn btn-danger" >Delete</button>
+            </form>
+            <form style="display: inline-block;" action="/",method='post'>
+              <button type="button" class="btn btn-info">Share</button>
+            </form>
+            <form style="display: inline-block;" action="/",method='post'>
+              <button type="button" class="btn btn-success">download</button>
+            </form>
+          </div>
+            {% endfor %}
+          </div>
+          <div style="flex:1;border-left-style: solid;height:500px">
+            <h2>Recent Video</h2>
+            {% for i in allv[0:6] %}
+            <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
+              <p>{{i.name}}</p>
+              <iframe width="200" height="158" allow="fullscreen;"
+              src="https://www.youtube.com/embed/{{i.note}}">
+              </iframe></br>
+
+                <form style="display: inline-block;" action="/video/delete" method='post'>
+                  <input type="hidden" name='id' value="{{i.id}}">
+                  <button type="submit" class="btn btn-danger" >Delete</button>
+                </form>
+                <form style="display: inline-block;" action="/",method='post'>
+                  <button type="button" class="btn btn-info">Share</button>
+                </form>
+                <form style="display: inline-block;" action="/",method='post'>
+                  <button type="button" class="btn btn-success">download</button>
+                </form>
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
     </div>
 </div>
 

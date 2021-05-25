@@ -162,6 +162,7 @@ class Links:
         self.type=data['type']
         self.userinfo=Users.get_one(data['user_id'])
 
+    
     @classmethod
     def get_one(cls,name):
         mysql = connectToMySQL("dopa")
@@ -199,5 +200,92 @@ class Links:
     def delete(cls,id):
         mysql = connectToMySQL("dopa")
         query="DELETE FROM notebox WHERE id = %(id)s;"
+        remove = mysql.query_db(query,id)
+        return remove
+
+
+class Videos:
+    def __init__(self,data):
+        self.id = data['id']
+        self.name = data['name']
+        self.note=data['note']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
+        self.type=data['type']
+        self.userinfo=Users.get_one(data['user_id'])
+
+    @classmethod
+    def get_one(cls,name):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM notebox where id =  %(id)s;"
+        one_note = mysql.query_db(query,name)
+        print(one_note)
+        return one_note
+
+    @classmethod
+    def get_all(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM notebox where user_id = %(id)s and type= 'video';"
+        all_notes = mysql.query_db(query,id)
+        all = []
+        for b in all_notes:
+            all.append(cls(b))
+        return all
+
+
+    @classmethod
+    def add(cls,data):
+        mysql = connectToMySQL("dopa")
+        query="INSERT INTO notebox(name,note,type,user_id) VALUES(%(name)s,%(note)s,'video',%(user_id)s);"
+        new_note = mysql.query_db(query,data)
+        return new_note
+
+    @classmethod
+    def delete(cls,id):
+        mysql = connectToMySQL("dopa")
+        query="DELETE FROM notebox WHERE id = %(id)s;"
+        remove = mysql.query_db(query,id)
+        return remove
+
+
+class Medias:
+    def __init__(self,data):
+        self.id = data['id']
+        self.name = data['name']
+        self.file=data['file']
+        self.created_at = data['CREATED_AT']
+        self.updated_at = data['UPDATED_AT']
+        self.type=data['type']
+        self.userinfo=Users.get_one(data['user_id'])
+
+    @classmethod
+    def get_one(cls,name):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM filebox where id =  %(id)s;"
+        one_note = mysql.query_db(query,name)
+        print(one_note)
+        return one_note
+
+    @classmethod
+    def get_all(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM filebox where user_id = %(id)s and type='media' ;"
+        all_notes = mysql.query_db(query,id)
+        all = []
+        for b in all_notes:
+            all.append(cls(b))
+        return all
+
+    @classmethod
+    def add(cls,data):
+        mysql = connectToMySQL("dopa")
+        query="INSERT INTO filebox(name,file,type,user_id) VALUES(%(name)s,%(file)s,'media',%(user_id)s);"
+        new_note = mysql.query_db(query,data)
+        return new_note
+
+    @classmethod
+    def delete(cls,id):
+        mysql = connectToMySQL("dopa")
+        query="DELETE FROM filebox WHERE id = %(id)s;"
         remove = mysql.query_db(query,id)
         return remove

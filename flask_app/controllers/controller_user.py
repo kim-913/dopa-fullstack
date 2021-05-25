@@ -3,7 +3,7 @@ from types import MethodDescriptorType
 from flask.globals import current_app
 from flask.wrappers import Request
 from werkzeug import datastructures
-from flask_app.models.model import Users,Notes,Links
+from flask_app.models.model import Users,Notes,Links,Videos,Medias
 from flask_app.config.mysqlconnection import connectToMySQL
     # import the function that will return an instance of a connection
 from flask import Flask,render_template,request, redirect,session
@@ -11,6 +11,7 @@ from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask import flash
 import operator
+
 bcrypt = Bcrypt(app)     
 
 @app.route('/')
@@ -32,10 +33,16 @@ def success():
     }
     All_note=Notes.get_all(user_id_data)
     All_link=Links.get_all(user_id_data)
+    All_image=Medias.get_all(user_id_data)
+    All_video=Videos.get_all(user_id_data)
     sorted_all_notes = sorted(All_note, key=operator.attrgetter('updated_at'),reverse=True)
     sorted_all_links = sorted(All_link, key=operator.attrgetter('updated_at'),reverse=True)
+    sorted_all_image = sorted(All_image, key=operator.attrgetter('updated_at'),reverse=True)
+
+    sorted_all_videos = sorted(All_video, key=operator.attrgetter('updated_at'),reverse=True)
+
     print(All_note)
-    return render_template('dashboard.html',all_note=sorted_all_notes,all_link=sorted_all_links)
+    return render_template('dashboard.html',all_note=sorted_all_notes,all_link=sorted_all_links,all_image=sorted_all_image,all_video=sorted_all_videos)
 
 @app.route('/create',methods=['post'])
 def create():
@@ -58,6 +65,11 @@ def logout():
 def about():
 
     return render_template('about.html')
+@app.route('/files')
+def file():
+
+    return render_template('files.html')
+
 
 @app.route('/login',methods=['post'])
 def login():
