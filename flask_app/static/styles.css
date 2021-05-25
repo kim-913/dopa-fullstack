@@ -213,7 +213,8 @@ h2{
 
 .recent_all{
   display: flex;
-  justify-content: space-evenly;
+
+  justify-content: space-around;
   
 }
 
@@ -221,3 +222,7 @@ h2{
   flex:1;
 }
 
+
+#select2{
+  display: none;
+}

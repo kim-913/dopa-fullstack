@@ -27,6 +27,9 @@ class Users:
         user_info = mysql.query_db(query,id)
         return user_info
 
+
+
+
     @classmethod
     def add(cls,data):
         mysql = connectToMySQL("dopa")
@@ -94,7 +97,15 @@ class Notes:
         query="DELETE FROM notebox WHERE id = %(id)s;"
         remove = mysql.query_db(query,id)
         return remove
-
+    @classmethod
+    def search(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM notebox where user_id = %(id)s and type = 'note' and (name LIKE %(content)s or note LIKE %(content)s);"
+        user_info = mysql.query_db(query,id)
+        all = []
+        for b in user_info:
+            all.append(cls(b))
+        return all
 
 class Accounts:
     def __init__(self,data):
@@ -151,6 +162,27 @@ class Accounts:
         print(remove)
         return remove
 
+    @classmethod
+    def search(cls,id,type):
+        mysql = connectToMySQL("dopa")
+        if type=='All':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and (name LIKE %(content)s or link LIKE %(content)s or user_name LIKE %(content)s or email LIKE %(content)s or comment LIKE %(content)s);"
+        elif type=='Name':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and name LIKE %(content)s ;"
+        elif type=='Link':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and link LIKE %(content)s;"
+        elif type=='User_name':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and user_name LIKE %(content)s;"
+        elif type=='Email':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and email LIKE %(content)s;"
+        elif type=='Comment':
+            query = "SELECT * FROM accountbox where user_id = %(id)s and comment LIKE %(content)s;"
+        user_info = mysql.query_db(query,id)
+        all = []
+        for b in user_info:
+            all.append(cls(b))
+        return all
+
 
 class Links:
     def __init__(self,data):
@@ -203,6 +235,16 @@ class Links:
         remove = mysql.query_db(query,id)
         return remove
 
+    @classmethod
+    def search(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM notebox where user_id = %(id)s and type = 'link' and (name LIKE %(content)s or note LIKE %(content)s);"
+        user_info = mysql.query_db(query,id)
+        all = []
+        for b in user_info:
+            all.append(cls(b))
+        return all
+
 
 class Videos:
     def __init__(self,data):
@@ -247,6 +289,15 @@ class Videos:
         remove = mysql.query_db(query,id)
         return remove
 
+    @classmethod
+    def search(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM notebox where user_id = %(id)s and type = 'video' and name LIKE %(content)s;"
+        user_info = mysql.query_db(query,id)
+        all = []
+        for b in user_info:
+            all.append(cls(b))
+        return all
 
 class Medias:
     def __init__(self,data):
@@ -289,3 +340,13 @@ class Medias:
         query="DELETE FROM filebox WHERE id = %(id)s;"
         remove = mysql.query_db(query,id)
         return remove
+
+    @classmethod
+    def search(cls,id):
+        mysql = connectToMySQL("dopa")
+        query = "SELECT * FROM filebox where user_id = %(id)s and type = 'media' and name LIKE %(content)s;"
+        user_info = mysql.query_db(query,id)
+        all = []
+        for b in user_info:
+            all.append(cls(b))
+        return all

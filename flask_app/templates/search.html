@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>About</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Dopa Box</h2>
+        <ul>
+          <li><a href="/dashboard"><i class="fas fa-home"></i>Home</a></li>
+          <li><a href="/notes"><i class="fas fa-sticky-note"></i>Notes</a></li>
+          <li><a href="/accounts"><i class="fas fa-key"></i>Accounts</a></li>
+          <li><a href="/links"><i class="fas fa-link"></i>Links</a></li>
+          <li><a href="/medias"><i class="fas fa-images"></i>Image/Video</a></li>
+          <li><a href="/files"><i class="fas fa-file"></i>Files</a></li>
+
+          <li><a href="/friends"><i class="fas fa-user-friends"></i>Friends</a></li>
+          <li><a href="/contactinfo"><i class="fas fa-info-circle"></i>About</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
+
+        </ul> 
+
+    </div>
+    <div class="main_content">
+                  
+      
+        <div class="header">Welcome!! Have a nice day.
+          <a href="/logout" style="color: black;">Log out</a>
+        </div>  
+         <form action="/search" method="GET">
+          <h2>Find: <input class="form-control" value='{{search_content}}' style="width: 40%; display: inline;" type="text" name="search_content" id=""><select style="width: 10%; display: inline;" class="form-control" name="search_type" id="select1">
+            <option value="{{search_type}}" selected >{{search_type}}</option>
+            <option value="Notes" >Notes</option>
+            <option value="Links">Links</option>
+            <option value="Images">Images</option>
+            <option value="Videos">Videos</option>
+
+          </select>
+          
+          <select id="select2">
+            <option>Choose Two</option>
+            <option value="1">Val 1</option>
+            <option value="2">Val 2</option>
+            <option value="3">Val 3</option> 
+          </select>
+          
+          <button type="submit" class="btn btn-dark">Search</button></h2>
+        {% if search_type=='Notes' %}  
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>Action</th>
+            <th>Created</th>
+            <th>Updated</th>
+          </tr>
+          {% for i in search %}
+          
+          <tr>
+            <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
+            <td><a href="/notes/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
+            <td>{{ i.created_at}}</td>
+            <td>{{ i.updated_at }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% endif %}
+
+        {% if search_type=='Links' %} 
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>LINK</th>
+            <th>Action</th>
+
+          </tr>
+          {% for i in search %}
+          
+          <tr>
+            <td><a href="https://{{i.note}}/" target="_blank">{{i.name}}</a></td>
+            <td><a href="https://{{i.note}}/" target="_blank">{{i.note}}</a></td>
+            <td><a href="/links/{{i.id}}">Update </a>or <a href="/links/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
+
+          </tr>
+          {% endfor %}
+        {% endif %}
+        {% if search_type=='Images' %} 
+        {% for i in search%}
+        <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
+        <p>{{i.name}}</p>
+        <img style="max-height: 600px;max-width:480px ;" src="data:image/png;base64,{{i.file}}" alt='img'></br>
+        <form style="display: inline-block;" action="/image/delete" method='post'>
+          <input type="hidden" name='id' value="{{i.id}}">
+          <button type="submit" class="btn btn-danger" >Delete</button>
+        </form>
+        <form style="display: inline-block;" action="/",method='post'>
+          <button type="button" class="btn btn-info">Share</button>
+        </form>
+        <form style="display: inline-block;" action="/",method='post'>
+          <button type="button" class="btn btn-success">download</button>
+        </form>
+      </div>
+        {% endfor %}
+        {% endif %}
+
+
+        {% if search_type=='Videos' %} 
+        {% for i in search%}
+        <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
+          <p>{{i.name}}</p>
+          <iframe width="400" height="316" allow="fullscreen;"
+          src="https://www.youtube.com/embed/{{i.note}}">
+          </iframe></br>
+
+            <form style="display: inline-block;" action="/video/delete" method='post'>
+              <input type="hidden" name='id' value="{{i.id}}">
+              <button type="submit" class="btn btn-danger" >Delete</button>
+            </form>
+            <form style="display: inline-block;" action="/",method='post'>
+              <button type="button" class="btn btn-info">Share</button>
+            </form>
+            <form style="display: inline-block;" action="/",method='post'>
+              <button type="button" class="btn btn-success">download</button>
+            </form>
+
+          </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<script>
+  $("#select1").change(function(){
+    if($(this).val() == 'Accounts'){
+      $("#select2").show();
+    }else{
+      $("#select2").hide();
+    }
+
+});
+
+</script>
+</body>
+</html>

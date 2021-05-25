@@ -65,3 +65,18 @@ def update_acc():
     if request.form['submit']=='Delete':
         delete = Accounts.delete(data_del)
     return redirect('/accounts')
+
+@app.route('/account/search',methods=['get'])
+def search_acc():
+    if 'user_id' not in session:
+        return render_template("index.html")
+    content=request.args.get('search_content')
+    type=request.args.get('search_type')
+    data={
+        'id':session['user_id'],
+        'content':'%%'+content+'%%',
+    }
+    searchdata= Accounts.search(data,type)
+    searchdata = sorted(searchdata, key=operator.attrgetter('updated_at'),reverse=True)
+
+    return render_template("searchacc.html",search = searchdata,content=content,type=type)

@@ -24,6 +24,7 @@
           <li><a href="/files"><i class="fas fa-file"></i>Files</a></li>
 
           <li><a href="/friends"><i class="fas fa-user-friends"></i>Friends</a></li>
+
           <li><a href="/contactinfo"><i class="fas fa-info-circle"></i>About</a></li>
 
             <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
@@ -41,14 +42,13 @@
           <div class="post">
             <h2><i class="fas fa-search"></i> 
         Find</h2>
-              <form action="">
-                <h2><input class="form-control"  style="width: 70%; display: inline;" type="text" name="search" id=""><select style="width: 20%; display: inline;" class="form-control" name="type" >
+              <form action="/search" method="GET">
+                <h2><input class="form-control"  style="width: 70%; display: inline;" type="text" name="search_content" id=""><select style="width: 20%; display: inline;" class="form-control" name="search_type" >
                   <option value="Notes">Notes</option>
-                  <option value="Accounts">Accounts</option>
                   <option value="Links">Links</option>
-                  <option value="media">Media</option>
-                  <option value="files">Files</option>
-        
+                  <option value="Images">Images</option>
+                  <option value="Videos">Videos</option>
+
                 </select></h2>
                 <h2>  <button type="submit" class="btn btn-dark">Search</button>
                 </h2>
@@ -61,8 +61,8 @@
             <h2><a style="color: black;" href="/notes"><i class="fas fa-sticky-note"></i></br>Note</a></h2>
             <h2><a style="color: black;" href="/accounts"><i class="fas fa-key" ></i></br>Accounts</a></h2>
             <h2><a style="color: black;" href="/links"><i class="fas fa-link" ></i></br>Links</a></h2>
-            <h2><a style="color: black;" href="/medias"><i class="fas fa-images" ></i></br>Media</a></h2>
-            <h2><a style="color: black;" href="/files"><i class="fas fa-file" ></i></br>Files</a></h2>
+            <h2><a style="color: black;" href="/medias"><i class="fas fa-images" ></i></br>images</a></h2>
+            <h2><a style="color: black;" href="/medias"><i class="fas fa-video" ></i></br>Videos</a></h2>
 
           </div>
         </div>
@@ -70,7 +70,7 @@
           
             <h2><i class="fas fa-folder"></i> 
         Recent</h2>
-        <div class="recent_all">
+        <div class="recent_all" >
               <div class='recent'>
                 <p>Notes</p>
                 {% for i in all_note[0:4] %}
@@ -95,9 +95,7 @@
                 <p><a style="color: black;" href="https://www.youtube.com/watch?v={{i.note}}" target="_blank">{{i.name}}</a></p>
                  {% endfor %}
               </div>
-              <div clas='recent'>
-                <p>Files</p>
-              </div>
+
           </div>
         </div>
         <div class="post">

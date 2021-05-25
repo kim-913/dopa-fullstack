@@ -35,7 +35,9 @@
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
         <form action="/account/search" method="GET">
-        <h2>Search <input class="form-control"  style="width: 40%; display: inline;"  type="text" name="search_content" id="">By <select  class="form-control"  style="width: 10%; display: inline;"  name="search_type" id="cars">
+
+        <h2>Search <input class="form-control" value="{{content}}" style="width: 40%; display: inline;"  type="text" name="search_content"  id="">By <select  class="form-control"  style="width: 10%; display: inline;"  name="search_type" id="">
+          <option value="{{type}}">{{type}}</option>
           <option value="All">All</option>
           <option value="Name">Name</option>
           <option value="Link">Link</option>
@@ -44,7 +46,7 @@
           <option value="Comment">Comment</option>
         </select><button type="submit" class="btn btn-dark">Search</button>
       </h2>
-    </form>
+        </form>
         <table id='accounts_table' class="table table-hover">
           <tr>
             <th>Name</th>
@@ -55,7 +57,7 @@
             <th>comment</th>
             <th>Action</th>
           </tr>
-          {% for i in all %}
+          {% for i in search %}
           <tr>
             <form action="/accounts/update" method="post">
               <td><input class='inputbox'type="text" name="name" id="" value="{{i.name}}"></td>
