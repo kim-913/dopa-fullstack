@@ -11,7 +11,82 @@
 
 </head>
 <body>
+    <div id="myModal1" class="modall">
+      <div class="modall-content">
+        <div class="paper">
+          <form action="/notes/create" method="post">
+          <div class="paper-content" >
+            Name:<input style="border-color: transparent;background-color: #fafafa; width: 50%;" type="text" name="name" id="" value="New Note"></br>
+              <textarea autofocus name="note"></textarea>
+          </div>
+          <input class='note-submit-button'type="submit" name="" id="" value="Create">
+          <span class="close">&times;</span>
+        </form>
+      </div>
+      </div>
+    </div>
 
+    <div id="myModal2" class="modall">
+      <div class="modall-content">
+
+          <span class="close">&times;</span>
+          <form action="/accounts/create" method="post">
+            <label class="form-label" for="form1">Name: <input class="form-control"type="text" name="name" id=""></label></br>
+            <label class="form-label" for="form1">Link: <input class="form-control"type="text" name="link" id=""></label></br>
+            <label class="form-label" for="form1">User_name: <input class="form-control"type="text" name="user_name" id=""></label></br>
+            <label class="form-label" for="form1">Email: <input class="form-control"type="text" name="email" id=""></label></br>
+            <label class="form-label" for="form1">Password: <input class="form-control"type="text" name="password" id=""></label></br>
+            <label class="form-label" for="form1">Comment:</label><input class="form-control"type="text" name="comment" id=""></br>
+
+            <button type="submit" class="btn btn-dark">Create</button>
+          </form>
+      </div>
+      </div>
+    </div>
+    <div id="myModal3" class="modall">
+      <div class="modall-content">
+        <span class="close">&times;</span>
+        <div class="form-outline">
+          <form action="/links/create" method="post">
+          <label class="form-label" for="form1">Name</label>
+          <input type="text" name='name' id="form1" class="form-control" style="width: 300px;"/>
+          <label class="form-label" for="form1">Link</label>
+          <input type="text" name='note' id="form1" class="form-control" />
+          <button type="submit" class="btn btn-dark">Create</button>
+
+        </form>
+
+        </div>
+        
+      </div>
+      </div>
+    </div>
+    <div id="myModal4" class="modall">
+
+      <div class="modall-content">
+        <span class="close">&times;</span>
+
+        <div style="padding:10px">
+          <h1><form action="/medias/image" method="post" enctype="multipart/form-data">
+            New image(JPG,PNG,GIF)</h1></br><h3>Name：<input type="text" name="name" id="" value="New Image"">
+  </h3><input type="file" name='file' accept="image/png, image/gif, image/jpeg"class="form-control" id="customFile"><button type="submit" class="btn btn-dark">Upload</button>
+          </form>
+        </div>
+        
+      </div>
+      </div>
+    </div>
+    <div id="myModal5" class="modall">
+      <div class="modall-content">
+          <span class="close">&times;</span>
+          <div style="padding:10px;">
+            <h1><form action="/medias/video" method="post">
+              New Video(Youtube Only)</h1></br><h3>Name：<input class="form-control" style="width: 50%;" type="text" name="name" id="" value="New video"></br>Link：<span>  </span>    <input class="form-control "type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
+            </form>
+          </div>
+      </div>
+      </div>
+    </div>
 <div class="wrapper">
     <div class="sidebar">
         <h2>Dopa Box</h2>
@@ -33,17 +108,18 @@
 
     </div>
     <div class="main_content">
-                  
-      
+
+                                                      
+                                                      
         <div class="header">Welcome!! Have a nice day.
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
         <div class="posts">
           <div class="post">
-            <h2><i class="fas fa-search"></i> 
-        Find</h2>
+            <h2 style="padding: 10px;"><i class="fas fa-search"></i> 
+        Find</h2> 
               <form action="/search" method="GET">
-                <h2><input class="form-control"  style="width: 70%; display: inline;" type="text" name="search_content" id=""><select style="width: 20%; display: inline;" class="form-control" name="search_type" >
+                <h2><input  class="form-control"  style="width: 70%; display: inline;" type="text" name="search_content" id=""><select style="width: 20%; display: inline;" class="form-control" name="search_type" >
                   <option value="Notes">Notes</option>
                   <option value="Links">Links</option>
                   <option value="Images">Images</option>
@@ -53,22 +129,23 @@
                 <h2>  <button type="submit" class="btn btn-dark">Search</button>
                 </h2>
               </form>
+
         </div>
         <div class="post">
 
-        <h2><i class="far fa-plus-square"></i> Quick </h2>
+        <h2 style="padding: 10px;"><i class="far fa-plus-square"></i> Quick </h2>
           <div class='quick' style="display: flex; justify-content: space-between; margin-top:30px;">
-            <h2><a style="color: black;" href="/notes"><i class="fas fa-sticky-note"></i></br>Note</a></h2>
-            <h2><a style="color: black;" href="/accounts"><i class="fas fa-key" ></i></br>Accounts</a></h2>
-            <h2><a style="color: black;" href="/links"><i class="fas fa-link" ></i></br>Links</a></h2>
-            <h2><a style="color: black;" href="/medias"><i class="fas fa-images" ></i></br>images</a></h2>
-            <h2><a style="color: black;" href="/medias"><i class="fas fa-video" ></i></br>Videos</a></h2>
+            <h2><a id="myBtn1" style="color: black;" ><i class="fas fa-sticky-note"></i></br>Note</a></h2>
+            <h2><a id="myBtn2" style="color: black;"><i class="fas fa-key" ></i></br>Accounts</a></h2>
+            <h2><a style="color: black;" id="myBtn3"><i class="fas fa-link" ></i></br>Links</a></h2>
+            <h2><a style="color: black;" id="myBtn4"><i class="fas fa-images" ></i></br>images</a></h2>
+            <h2><a style="color: black;" id="myBtn5"><i class="fas fa-video" ></i></br>Videos</a></h2>
 
           </div>
         </div>
         <div class="post">
           
-            <h2><i class="fas fa-folder"></i> 
+            <h2 style="padding: 10px;"><i class="fas fa-folder"></i> 
         Recent</h2>
         <div class="recent_all" >
               <div class='recent'>
@@ -100,7 +177,7 @@
         </div>
         <div class="post">
 
-            <h2><i class="fas fa-user-friends"></i> 
+            <h2 style="padding: 10px;"><i class="fas fa-user-friends"></i> 
         Friends</h2>
 
         </div>
@@ -108,6 +185,7 @@
         </div>
     </div>
 </div>
+<script src="{{url_for('static', filename='popup.js')}}"></script>
 
 </body>
 </html>

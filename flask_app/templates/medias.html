@@ -75,7 +75,7 @@
         </div>
         <div style="padding:10px;border-style: solid;">
           <h1><form action="/medias/video" method="post">
-            New Video(Youtube Only)</h1></br><h3>Name：<input style="width: 50%;" type="text" name="name" id="" value="Video {{allv|length+1}}"></br>Link：<span>  </span>    <input type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
+            New Video(Youtube Only)</h1></br><h3>Name：<input  style="width: 50%;" type="text" name="name" id="" value="Video {{allv|length+1}}"></br>Link：<span>  </span>    <input  type="text" name="note" id=""></h3><button type="submit" class="btn btn-dark">Post</button>
           </form>
         </div>
       </div>
@@ -94,9 +94,8 @@
             <form style="display: inline-block;" action="/",method='post'>
               <button type="button" class="btn btn-info">Share</button>
             </form>
-            <form style="display: inline-block;" action="/",method='post'>
-              <button type="button" class="btn btn-success">download</button>
-            </form>
+            <a href="data:image/png;base64,{{i.file}}" download><button type="button" class="btn btn-success">download</button></a>
+              
           </div>
             {% endfor %}
           </div>

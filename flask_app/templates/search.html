@@ -37,20 +37,13 @@
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
          <form action="/search" method="GET">
-          <h2>Find: <input class="form-control" value='{{search_content}}' style="width: 40%; display: inline;" type="text" name="search_content" id=""><select style="width: 10%; display: inline;" class="form-control" name="search_type" id="select1">
+          <h2>Find: 
+            <input class="form-control" value='{{search_content}}' style="width: 40%; display: inline;" type="text" name="search_content" id=""><select style="width: 10%; display: inline;" class="form-control" name="search_type" id="select1">
             <option value="{{search_type}}" selected >{{search_type}}</option>
             <option value="Notes" >Notes</option>
             <option value="Links">Links</option>
             <option value="Images">Images</option>
             <option value="Videos">Videos</option>
-
-          </select>
-          
-          <select id="select2">
-            <option>Choose Two</option>
-            <option value="1">Val 1</option>
-            <option value="2">Val 2</option>
-            <option value="3">Val 3</option> 
           </select>
           
           <button type="submit" class="btn btn-dark">Search</button></h2>
@@ -104,9 +97,8 @@
         <form style="display: inline-block;" action="/",method='post'>
           <button type="button" class="btn btn-info">Share</button>
         </form>
-        <form style="display: inline-block;" action="/",method='post'>
-          <button type="button" class="btn btn-success">download</button>
-        </form>
+        <a href="data:image/png;base64,{{i.file}}" download><button type="button" class="btn btn-success">download</button></a>
+
       </div>
         {% endfor %}
         {% endif %}

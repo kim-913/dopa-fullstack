@@ -52,10 +52,14 @@ def edit_note(id):
         'id':session['user_id']
     }
     all_note = Notes.get_all(data)
+    
     sorted_all_notes = sorted(all_note, key=operator.attrgetter('updated_at'),reverse=True)
 
     update=Notes.get_one(data2)
-    return render_template('updatenote.html',all=sorted_all_notes,update=update)
+    if update[0]['user_id']==session['user_id']:
+        return render_template('updatenote.html',all=sorted_all_notes,update=update)
+    else:
+        return redirect('/notes')
 
 @app.route('/notes/<id>/update',methods=['post'])
 def update_note(id):
@@ -121,7 +125,10 @@ def edit_link(id):
     all_link = Links.get_all(data)
     sorted_all_links = sorted(all_link, key=operator.attrgetter('updated_at'),reverse=True)
     update=Links.get_one(data2)
-    return render_template('updatelink.html',all=sorted_all_links,update=update)
+    if update[0]['user_id']==session['user_id']:
+        return render_template('updatelink.html',all=sorted_all_links,update=update)
+    else:
+        return redirect('/notes')
 
 @app.route('/links/<id>/update',methods=['post'])
 def update_link(id):
