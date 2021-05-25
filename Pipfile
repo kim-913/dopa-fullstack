@@ -9,8 +9,6 @@ flask = "*"
 flask-bcrypt = "*"
 cryptography = "*"
 pytube = "*"
-cv = "*"
-opencv-python = "*"
 
 [dev-packages]
 

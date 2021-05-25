@@ -69,6 +69,10 @@ def about():
 def file():
 
     return render_template('files.html')
+@app.route('/friends')
+def friends():
+
+    return render_template('friends.html')
 
 
 @app.route('/login',methods=['post'])
