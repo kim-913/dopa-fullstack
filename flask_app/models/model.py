@@ -7,7 +7,6 @@ from flask_app import app
 bcrypt = Bcrypt(app)     
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
-NAME_REGEX = re.compile(r'^[a-zA-Z]') 
 
 class Users:
     def __init__(self,data):
@@ -47,7 +46,15 @@ class Users:
         one_user = mysql.query_db(query, data)
         print(one_user)
         return one_user
-
+    @staticmethod
+    def validate_user(user):
+        is_valid = True # we assume this is true
+        if not EMAIL_REGEX.match(user['email']): 
+            is_valid = False
+        if Users.get_one_by_email(user['email'])!=():
+            flash("Email Already exist",'existemail')
+            is_valid = False
+        return is_valid
 class Notes:
     def __init__(self,data):
         self.id = data['id']

@@ -5,14 +5,88 @@
     <title>Dopa</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+<script>
+
+	$().ready(function() {
+		// validate the comment form when it is submitted
+
+		// validate signup form on keyup and submit
+		$("#signupForm").validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 2
+				},
+				pw: {
+					required: true,
+					minlength: 3
+				},
+				confirm_pw: {
+					equalTo: "#pw"
+				},
+				email: {
+					required: true,
+					email: true
+				},
+			},
+			messages: {
+				name: {
+					required: "Please enter a name",
+					minlength: "Your name must consist of at least 2 characters"
+				},
+				pw: {
+					required: "Please provide a password",
+					minlength: "Password must be at least 3 characters"
+				},
+				confirm_pw: {
+					required: "Please provide a password",
+					equalTo: "Please enter the same password as above"
+				},
+				email: "Please enter a valid email address",
+			}
+		});
+// validate login form on keyup and submit
+  $("#loginForm").validate({
+			rules: {
+				pw: {
+					required: true,
+					minlength: 3
+				},
+				email: {
+					required: true,
+					email: true
+				},
+			},
+			messages: {
+				pw: {
+					required: "Please provide a password",
+					minlength: "Password must be at least 3 characters"
+				},
+
+				email: "Please enter a valid email address",
+			}
+		});
+
+	});
+	</script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <style>
+         .error {
+
+          font-size: 10px;
+
+ }
+
+    </style>
   </head>
   <body>
   <div class='intro'>
     <h1>Welcome To Dopa</h1>
     <p>Dopa is a platform that allow customer to save everything and share to other people within/out of the platform.</p>
     <p> Ex:Notes,Password,Image/Video,Links,Files </p>
-    <p> See Demo by clicking the Login button and input the demo email/pw on the right top </p>
+    <p> See Demo by clicking the Login button and input the demo email/pw on the left top </p>
   </div>
  
 
@@ -29,15 +103,15 @@
 
     <div class="login-box">
       <div class="hide-login-btn"><i class="fas fa-times"></i></div>
-      <h2>Demo Email:guest</h2>
+      <h2>Demo Email:guest@dopa</h2>
       <h2>Demo Password:123</h2>
 
-    <form class="login-form" action="/login" method="post">
+    <form id = "loginForm" class="login-form" action="/login" method="post">
       <h1>Welcome Back</h1>
       <input class="txtb" type="text" name="email" placeholder="Email">
       <input class="txtb" type="password" name="pw" placeholder="Password">
+    </br>
       <input class="login-btn" type="submit" name="" value="Login">
-
     </form>
     </div>
 
@@ -45,12 +119,14 @@
 
     <div class="reg-box">
       <div class="hide-reg-btn"><i class="fas fa-times"></i></div>
-    <form class="login-form" action="/create" method="post">
+    <form id='signupForm' class="login-form" action="/create" method="post">
       <h1>Register</h1>
       <input class="txtb" type="text" name="name" placeholder="Name">
-
+   
       <input class="txtb" type="text" name="email" placeholder="Email">
-      <input class="txtb" type="password" name="pw" placeholder="Password">
+      <input class="txtb" type="password" id='pw' name="pw" placeholder="Password">
+      <input class="txtb" type="password" name="confirm_pw" placeholder="Confirm Password">
+    </br>
       <input class="login-btn" type="submit" name="" value="Register">
     </form>
     </div>

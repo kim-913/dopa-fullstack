@@ -46,6 +46,8 @@ def success():
 
 @app.route('/create',methods=['post'])
 def create():
+    if not Users.validate_user(request.form):
+        return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['pw'])
     data={
         'name':request.form['name'],
