@@ -91,25 +91,3 @@ def login():
 
     return redirect("/dashboard")
 
-@app.route('/search',methods=['GET','POST'])
-def search():
-    content=request.args.get('search_content')
-    type=request.args.get('search_type')
-    data={
-        'id':session['user_id'],
-        'content':'%%'+content+'%%'
-    }
-    if type == 'Notes':
-        searchdata=Notes.search(data)
-        searchdata = sorted(searchdata, key=operator.attrgetter('updated_at'),reverse=True)
-        print(searchdata)
-    elif type == 'Links':
-        searchdata=Links.search(data)
-        searchdata = sorted(searchdata, key=operator.attrgetter('updated_at'),reverse=True)
-    elif type == 'Images':
-        searchdata=Medias.search(data)
-        searchdata = sorted(searchdata, key=operator.attrgetter('updated_at'),reverse=True)
-    elif type == 'Videos':
-        searchdata=Videos.search(data)
-        searchdata = sorted(searchdata, key=operator.attrgetter('updated_at'),reverse=True)
-    return render_template("search.html",search_content=content,search_type=type,search=searchdata)

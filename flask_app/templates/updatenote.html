@@ -66,13 +66,20 @@
               <th>Updated</th>
             </tr>
             {% for i in all[0:16] %}
-            
             <tr>
               <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
-              <td><a href="/notes/{{i.id}}/delete">Delete </a> or <a href="">Share </a></td>
-              <td>{{ i['created_at'] }}</td>
-              <td>{{ i['updated_at'] }}</td>
+              <td> <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-outline-danger'>Delete</button> 
+                <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+                  <a href="/notes/{{i.id}}/delete"><button class='btn btn-warning'>Confirm</button></a>
+                  </span>
+              </div>
+              <button class='btn btn-outline-primary' >Share</button></td>
+              <td>{{ i.created_at}}</td>
+              <td>{{ i.updated_at }}</td>
             </tr>
+            <script>
+
+            </script>
             {% endfor %}
 
           </table>
@@ -81,6 +88,7 @@
 
     </div>
 </div>
+<script src="{{url_for('static', filename='popup_delete.js')}}"></script>
 
 </body>
 </html>

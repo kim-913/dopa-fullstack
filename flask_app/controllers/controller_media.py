@@ -65,12 +65,14 @@ def up_photo():
 
 @app.route('/image/delete',methods=['post'])
 def delete_image():
+
     if 'user_id' not in session:
         return render_template("index.html")
     data={
         'id':request.form['id']
     }
     all_note = Medias.delete(data)
+    print(all_note)
     return redirect('/medias')
 
 

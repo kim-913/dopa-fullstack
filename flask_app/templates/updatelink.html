@@ -31,7 +31,7 @@
 
     </div>
     <div class="main_content" >
-        <div class="header">Welcome!<a href="/notes"style="color: black;">Click here to create a new link</a>
+        <div class="header">Welcome!<a href="/links"style="color: black;">Click here to create a new link</a>
           <a href="/logout" style="color: black;">Log out</a>
         </div>  
         <h2 >Search</h2> <h2><input class="form-control" style="width: 25%;display: inline;" type="text" name="" id=""><button type="submit" style="display: inline;" class="btn btn-outline-dark">Search</button></h2>
@@ -61,7 +61,13 @@
             
             <tr>
               <td><a href="https://{{i.note}}/" target="_blank">{{i.name}}</a></td>
-              <td><a href="">Update </a>or <a href="">Delete</a> or <a href="">Share </a></td>
+              <td><a href="/links/{{i.id}}"> <button class="btn btn-outline-success btn-lg">Update</button></a> 
+                
+                <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-outline-danger btn-lg'>Delete</button> 
+                  <span class="popuptext" id="myPopup{{i.id}}">Are you sure? </br>
+                    <a href="/links/{{i.id}}/delete"><button class='btn btn-warning'>Yes</button></a>
+                    </span>
+                </div>   <button class='btn btn-outline-primary btn-lg' >Share</button></td>
 
             </tr>
             {% endfor %}
@@ -72,6 +78,7 @@
 
     </div>
 </div>
+<script src="{{url_for('static', filename='popup_delete.js')}}"></script>
 
 </body>
 </html>

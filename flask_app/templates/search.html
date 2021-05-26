@@ -45,7 +45,7 @@
             <option value="Images">Images</option>
             <option value="Videos">Videos</option>
           </select>
-          
+        </form>
           <button type="submit" class="btn btn-outline-dark">Search</button></h2>
         {% if search_type=='Notes' %}  
         <table class="table table-striped">
@@ -56,13 +56,19 @@
             <th>Updated</th>
           </tr>
           {% for i in search %}
-          
+
           <tr>
             <td><a href="/notes/{{i.id}}">{{i.name}}</a></td>
-            <td><a href="/notes/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
+            <td> <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-outline-danger'>Delete</button> 
+              <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+                <a href="/notes/{{i.id}}/delete"><button class='btn btn-warning'>Confirm</button></a>
+                </span>
+            </div>
+            <button class='btn btn-outline-primary' >Share</button></td>
             <td>{{ i.created_at}}</td>
             <td>{{ i.updated_at }}</td>
           </tr>
+
           {% endfor %}
         </table>
         {% endif %}
@@ -80,7 +86,13 @@
           <tr>
             <td><a href="https://{{i.note}}/" target="_blank">{{i.name}}</a></td>
             <td><a href="https://{{i.note}}/" target="_blank">{{i.note}}</a></td>
-            <td><a href="/links/{{i.id}}">Update </a>or <a href="/links/{{i.id}}/delete">Delete</a> or <a href="">Share </a></td>
+            <td><a href="/links/{{i.id}}"> <button class="btn btn-outline-success ">Update</button></a> 
+                
+              <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-outline-danger '>Delete</button> 
+                <span class="popuptext" id="myPopup{{i.id}}">Are you sure? </br>
+                  <a href="/links/{{i.id}}/delete"><button class='btn btn-warning'>Yes</button></a>
+                  </span>
+              </div>   <button class='btn btn-outline-primary' >Share</button></td>
 
           </tr>
           {% endfor %}
@@ -90,10 +102,15 @@
         <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
         <p>{{i.name}}</p>
         <img style="max-height: 600px;max-width:480px ;" src="data:image/png;base64,{{i.file}}" alt='img'></br>
-        <form style="display: inline-block;" action="/image/delete" method='post'>
-          <input type="hidden" name='id' value="{{i.id}}">
-          <button type="submit" class="btn btn-danger" >Delete</button>
-        </form>
+        <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-danger'>Delete</button> 
+          <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+            <form style="display: inline-block;" action="/image/delete" method='post'>
+            <input type="hidden" name='id' value="{{i.id}}">
+            <button type='submit'class='btn btn-warning'>Confirm</button>
+          </form>
+            </span>
+        </div>
+
         <form style="display: inline-block;" action="/",method='post'>
           <button type="button" class="btn btn-info">Share</button>
         </form>
@@ -112,10 +129,14 @@
           src="https://www.youtube.com/embed/{{i.note}}">
           </iframe></br>
 
-            <form style="display: inline-block;" action="/video/delete" method='post'>
+          <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-danger'>Delete</button> 
+            <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+              <form style="display: inline-block;" action="/video/delete" method='post'>
               <input type="hidden" name='id' value="{{i.id}}">
-              <button type="submit" class="btn btn-danger" >Delete</button>
+              <button type='submit'class='btn btn-warning'>Confirm</button>
             </form>
+              </span>
+          </div>
             <form style="display: inline-block;" action="/",method='post'>
               <button type="button" class="btn btn-info">Share</button>
             </form>
@@ -128,16 +149,7 @@
         {% endif %}
     </div>
 </div>
-<script>
-  $("#select1").change(function(){
-    if($(this).val() == 'Accounts'){
-      $("#select2").show();
-    }else{
-      $("#select2").hide();
-    }
+<script src="{{url_for('static', filename='popup_delete.js')}}"></script>
 
-});
-
-</script>
 </body>
 </html>

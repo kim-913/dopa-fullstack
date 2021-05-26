@@ -87,10 +87,18 @@
             <div style="display: inline-block;text-align: center; margin-left:10px;margin-top: 5px;">
             <p>{{i.name}}</p>
             <img style="max-height: 300px;max-width:240px ;" src="data:image/png;base64,{{i.file}}" alt='img'></br>
-            <form style="display: inline-block;" action="/image/delete" method='post'>
+            <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-danger'>Delete</button> 
+              <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+                <form style="display: inline-block;" action="/image/delete" method='post'>
+                <input type="hidden" name='id' value="{{i.id}}">
+                <button type='submit'class='btn btn-warning'>Confirm</button>
+              </form>
+                </span>
+            </div>
+            <!-- <form style="display: inline-block;" action="/image/delete" method='post'>
               <input type="hidden" name='id' value="{{i.id}}">
               <button type="submit" class="btn btn-danger" >Delete</button>
-            </form>
+            </form> -->
             <form style="display: inline-block;" action="/",method='post'>
               <button type="button" class="btn btn-info">Share</button>
             </form>
@@ -107,11 +115,19 @@
               <iframe width="200" height="158" allow="fullscreen;"
               src="https://www.youtube.com/embed/{{i.note}}">
               </iframe></br>
-
-                <form style="display: inline-block;" action="/video/delete" method='post'>
+              <div class="popup" onclick="myFunction({{i.id}})"><button class='btn btn-danger'>Delete</button> 
+                <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+                  <form style="display: inline-block;" action="/video/delete" method='post'>
+                  <input type="hidden" name='id' value="{{i.id}}">
+                  <button type='submit'class='btn btn-warning'>Confirm</button>
+                </form>
+                  </span>
+              </div>
+                <!-- <form style="display: inline-block;" action="/video/delete" method='post'>
                   <input type="hidden" name='id' value="{{i.id}}">
                   <button type="submit" class="btn btn-danger" >Delete</button>
-                </form>
+                </form> -->
+                
                 <form style="display: inline-block;" action="/",method='post'>
                   <button type="button" class="btn btn-info">Share</button>
                 </form>
@@ -125,6 +141,7 @@
         </div>
     </div>
 </div>
+<script src="{{url_for('static', filename='popup_delete.js')}}"></script>
 
 </body>
 </html>

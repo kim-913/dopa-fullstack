@@ -65,7 +65,11 @@
               <th><input class='inputbox' type="text" name="password" id="" value="{{i.password}}"></th>
               <th><input class='inputbox'type="text" name="comment" id="" value="{{i.comment}}"></th>
               <input type="hidden" name="id" id="" value="{{i.id}}">
-              <th><input class='inputbox'type="submit" name="submit" id=""value="Update"> or <input class='inputbox'type="submit" name="submit" id=""value="Delete"></th>
+              <th><input class='inputbox'type="submit" name="submit" id=""value="Update"> or <div class="popup" onclick="myFunction({{i.id}})">Delete
+                <span class="popuptext" id="myPopup{{i.id}}">Are you sure you want to delete "{{i.name}}"? </br>
+                  <input class='inputbox'type="submit" name="submit" id=""value="Delete"></a>
+                  </span>
+              </div></th>
             </form>
           </tr>
           {% endfor %}
@@ -85,6 +89,7 @@
 
     </div>
 </div>
+<script src="{{url_for('static', filename='popup_delete.js')}}"></script>
 
 </body>
 </html>
