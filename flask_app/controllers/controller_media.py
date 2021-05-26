@@ -6,13 +6,16 @@ from flask.wrappers import Request
 from flask_app.models.model import Users,Notes,Accounts,Medias,Videos
 from flask_app.config.mysqlconnection import connectToMySQL
     # import the function that will return an instance of a connection
-from flask import Flask,render_template,request, redirect,session
+from flask import Flask,render_template,request, redirect,session,send_file,after_this_request
 from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask import flash
 import operator
 from urllib.parse import urlparse, parse_qs
 import base64
+from pytube import YouTube 
+import os
+
 
 
 bcrypt = Bcrypt(app)     
@@ -101,3 +104,17 @@ def delete_video():
     }
     all_note = Videos.delete(data)
     return redirect('/medias')
+
+@app.route('/video/download',methods=['POST'])
+def dowload_video():
+    link="https://www.youtube.com/watch?v="+request.form['id']
+    print(link)
+    yt = YouTube(link)
+    stream = yt.streams.first()
+    downloadfile=stream.download()  
+    fname = downloadfile.split("//")[-1]  
+    @after_this_request
+    def remove_file(response):
+        os.remove(downloadfile)
+        return response
+    return send_file(fname,as_attachment=True)

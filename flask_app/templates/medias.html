@@ -131,9 +131,13 @@
                 <form style="display: inline-block;" action="/",method='post'>
                   <button type="button" class="btn btn-info">Share</button>
                 </form>
-                <form style="display: inline-block;" action="/",method='post'>
-                  <button type="button" class="btn btn-success">download</button>
+
+                <form style="display: inline-block;" action="/video/download" method='post'>
+                  <input type="hidden" name="id" id="" value="{{i.note}}">
+                  <button type="submit" class="btn btn-success">Download</button>
                 </form>
+                  
+                
 
               </div>
             {% endfor %}
