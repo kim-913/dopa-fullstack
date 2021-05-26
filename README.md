@@ -8,6 +8,8 @@ The website is fulling deployed at:
 
 # [Dopa](https://breakdance.github.io/breakdance/) (www.dopadu.com)
 
+See demo without registration by using email:guest@dopa, password:123
+
 ## Features
 
 - Create and update notes/links 
