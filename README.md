@@ -29,7 +29,7 @@ Dopa uses a number of open source projects to work properly:
 - jQuery
 - pytube
 - pymysql
-- AWS/R52
+- AWS/R53
 
 ## Incoming Features
 
