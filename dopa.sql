@@ -47,7 +47,7 @@ CREATE TABLE `accountbox` (
 
 LOCK TABLES `accountbox` WRITE;
 /*!40000 ALTER TABLE `accountbox` DISABLE KEYS */;
-INSERT INTO `accountbox` VALUES (1,'one','dopa.com','vince','ldkxnb@gmail.com','123','this one is for testing','NOW()','NOW() on update NOW()',1),(4,'every','column','is','optional','and','can be anything','NOW()','NOW() on update NOW()',1);
+INSERT INTO `accountbox` VALUES (1,'one','dopa.com','kim','kziruo@gmail.com','123','this one is for testing','NOW()','NOW() on update NOW()',1),(4,'every','column','is','optional','and','can be anything','NOW()','NOW() on update NOW()',1);
 /*!40000 ALTER TABLE `accountbox` ENABLE KEYS */;
 UNLOCK TABLES;
 
